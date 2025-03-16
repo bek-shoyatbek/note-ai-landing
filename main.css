@@ -1,0 +1,133 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #6200ee;
+}
+
+header p {
+    margin: 10px 0 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Controls */
+.controls {
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.record-btn {
+    background-color: #6200ee;
+    color: #fff;
+}
+
+.record-btn:hover {
+    background-color: #3700b3;
+}
+
+.stop-btn {
+    background-color: #ff4444;
+    color: #fff;
+}
+
+.stop-btn:hover {
+    background-color: #cc0000;
+}
+
+.stop-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Status */
+.status {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Notes List */
+.notes-container {
+    text-align: left;
+}
+
+.notes-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.note {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note:last-child {
+    border-bottom: none;
+}
+
+.note-date {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
+    
+}
+
+.note-text {
+    font-size: 14px;
+    color: #333;
+    flex-grow: 1;
+}
+
+.note-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.note-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+}
+
+.note-actions button:hover {
+    color: #333;
+}

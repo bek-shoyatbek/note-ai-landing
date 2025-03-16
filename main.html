@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note-AI</title>
+    <link rel="stylesheet" href="main.css">
+    <link href="./favicon.ico" rel="icon" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Note-AI</h1>
+            <p>Say "note" followed by your note to create a new entry. Use <kbd>Alt + N</kbd> to start recording.</p>
+        </header>
+
+        <main>
+            <div class="controls">
+                <button id="start-btn" class="btn record-btn">Start Recording</button>
+                <button id="stop-btn" class="btn stop-btn" disabled>Stop Recording</button>
+            </div>
+
+            <div class="status" id="status">Press "Start Recording" or say "note" to begin.</div>
+
+            <div class="notes-container">
+                <div class="notes-list" id="notes-list">
+                    <!-- Notes will be dynamically added here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+
+</html>
