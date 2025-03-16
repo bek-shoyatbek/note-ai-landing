@@ -223,3 +223,58 @@ header h1 {
 .add-btn:hover {
     background: var(--primary-hover);
 }
+
+/* Instructions Section */
+.instructions {
+    margin-top: 40px;
+    padding: 40px 0;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+}
+
+.instructions h2 {
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--bg-color);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.step p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.step p strong {
+    color: var(--primary-color);
+}
