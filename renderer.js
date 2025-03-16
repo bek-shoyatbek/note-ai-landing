@@ -2,10 +2,29 @@ const startBtn = document.getElementById('start-btn');
 const stopBtn = document.getElementById('stop-btn');
 const statusText = document.getElementById('status');
 const notesList = document.getElementById('notes-list');
+const themeSwitch = document.getElementById('theme-switch');
+const manualNoteInput = document.getElementById('manual-note');
+const addNoteBtn = document.getElementById('add-note-btn');
+
 let isRecording = false;
 let recognition = null;
 const SILENCE_DURATION = 2000; // 2 seconds of silence to end a note
 
+// Dark/Light Mode Toggle
+themeSwitch.addEventListener('change', () => {
+    document.body.classList.toggle('light-mode');
+});
+
+// Add Note Manually
+addNoteBtn.addEventListener('click', () => {
+    const noteText = manualNoteInput.value.trim();
+    if (noteText) {
+        addNote(noteText);
+        manualNoteInput.value = '';
+    }
+});
+
+// Speech Recognition
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 if (!SpeechRecognition) {
     statusText.textContent = "Your browser does not support speech recognition.";
@@ -13,24 +32,22 @@ if (!SpeechRecognition) {
     stopBtn.disabled = true;
 } else {
     recognition = new SpeechRecognition();
-    recognition.continuous = true; // Keep recording until stopped
-    recognition.interimResults = true; // Show interim results
-    recognition.lang = 'en-US'; // Set language
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
 
     let silenceTimer;
     let finalTranscript = '';
 
-    // Start recording
     startBtn.addEventListener('click', () => {
         recognition.start();
         startBtn.disabled = true;
         stopBtn.disabled = false;
         statusText.textContent = "Recording... Say 'note' followed by your note.";
         isRecording = true;
-        finalTranscript = ''; // Reset transcript
+        finalTranscript = '';
     });
 
-    // Stop recording
     stopBtn.addEventListener('click', () => {
         recognition.stop();
         startBtn.disabled = false;
@@ -39,7 +56,6 @@ if (!SpeechRecognition) {
         isRecording = false;
     });
 
-    // Handle speech recognition results
     recognition.onresult = (event) => {
         let interimTranscript = '';
         for (let i = event.resultIndex; i < event.results.length; i++) {
@@ -51,14 +67,13 @@ if (!SpeechRecognition) {
             }
         }
 
-        // Reset the silence timer
         clearTimeout(silenceTimer);
         silenceTimer = setTimeout(() => {
             if (isRecording && finalTranscript.trim()) {
                 const noteText = finalTranscript.trim();
-                const noteDate = extractDate(noteText); // Extract date from note
+                const noteDate = extractDate(noteText);
                 addNote(noteText, noteDate);
-                finalTranscript = ''; // Reset transcript
+                finalTranscript = '';
             }
         }, SILENCE_DURATION);
     };
@@ -121,7 +136,7 @@ function addNote(text, date) {
     notesList.scrollTop = notesList.scrollHeight;
 }
 
-// Extract date from note text (e.g., "on Monday")
+// Extract date from note text
 function extractDate(text) {
     const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     for (const day of days) {
@@ -132,7 +147,7 @@ function extractDate(text) {
     return null;
 }
 
-// Keyboard shortcut: Alt + N
+// Keyboard shortcuts
 document.addEventListener('keydown', (event) => {
     if (event.altKey && event.key.toLowerCase() === 'n') {
         if (!isRecording) {
@@ -143,10 +158,7 @@ document.addEventListener('keydown', (event) => {
             isRecording = true;
         }
     }
-});
 
-// Keyboard shortcut: Alt + S to stop recording
-document.addEventListener('keydown', (event) => {
     if (event.altKey && event.key.toLowerCase() === 's') {
         if (isRecording) {
             recognition.stop();

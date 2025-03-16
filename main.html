@@ -9,27 +9,42 @@
     <link href="./favicon.ico" rel="icon" type="image/x-icon">
 </head>
 
-<body>
+<body class="dark-mode">
     <div class="container">
+        <!-- Header -->
         <header>
             <h1>Note-AI</h1>
-            <p>Say "note" followed by your note to create a new entry. Use <kbd>Alt + N</kbd> to start recording.</p>
+            <div class="theme-toggle">
+                <input type="checkbox" id="theme-switch">
+                <label for="theme-switch" class="toggle-label"></label>
+            </div>
         </header>
 
-        <main>
-            <div class="controls">
-                <button id="start-btn" class="btn record-btn">Start Recording</button>
-                <button id="stop-btn" class="btn stop-btn" disabled>Stop Recording</button>
-            </div>
+        <!-- Controls -->
+        <div class="controls">
+            <button id="start-btn" class="btn record-btn">
+                <span class="icon">🎙️</span> Start Recording
+            </button>
+            <button id="stop-btn" class="btn stop-btn" disabled>
+                <span class="icon">⏹️</span> Stop Recording
+            </button>
+        </div>
 
-            <div class="status" id="status">Press "Start Recording" or say "note" to begin.</div>
+        <!-- Status -->
+        <div class="status" id="status">Press <kbd>Alt + N</kbd> to start recording.</div>
 
-            <div class="notes-container">
-                <div class="notes-list" id="notes-list">
-                    <!-- Notes will be dynamically added here -->
-                </div>
+        <!-- Notes List -->
+        <div class="notes-container">
+            <div class="notes-list" id="notes-list">
+                <!-- Notes will be dynamically added here -->
             </div>
-        </main>
+        </div>
+
+        <!-- Add Note Manually -->
+        <div class="add-note">
+            <textarea id="manual-note" placeholder="Type your note here..."></textarea>
+            <button id="add-note-btn" class="btn add-btn">Add Note</button>
+        </div>
     </div>
 
     <script src="renderer.js"></script>
