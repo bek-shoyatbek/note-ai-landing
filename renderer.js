@@ -144,3 +144,16 @@ document.addEventListener('keydown', (event) => {
         }
     }
 });
+
+// Keyboard shortcut: Alt + S to stop recording
+document.addEventListener('keydown', (event) => {
+    if (event.altKey && event.key.toLowerCase() === 's') {
+        if (isRecording) {
+            recognition.stop();
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+            statusText.textContent = "Recording stopped.";
+            isRecording = false;
+        }
+    }
+});
